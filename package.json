@@ -7,17 +7,33 @@
   "engines": {
     "vscode": "^1.92.0"
   },
-  "categories": ["Formatters"],
-  "keywords": ["jsp", "formatter", "prettier", "java", "html"],
-  "activationEvents": ["onLanguage:jsp"],
+  "categories": [
+    "Formatters"
+  ],
+  "keywords": [
+    "jsp",
+    "formatter",
+    "prettier",
+    "java",
+    "html"
+  ],
+  "activationEvents": [
+    "onLanguage:jsp"
+  ],
   "main": "./out/extension.js",
   "icon": "images/icon.png",
   "contributes": {
     "languages": [
       {
         "id": "jsp",
-        "aliases": ["JSP", "jsp"],
-        "extensions": [".jsp", ".jspx"],
+        "aliases": [
+          "JSP",
+          "jsp"
+        ],
+        "extensions": [
+          ".jsp",
+          ".jspx"
+        ],
         "configuration": "./language-configuration.json"
       }
     ],
@@ -37,9 +53,19 @@
         },
         "jspFormatter.javaFormat": {
           "type": "string",
-          "enum": ["auto", "indent-only", "off"],
+          "enum": [
+            "auto",
+            "indent-only",
+            "off"
+          ],
           "default": "auto",
           "description": "Cómo formatear el Java dentro de <% %>: auto = intenta prettier-plugin-java; indent-only = solo indenta; off = no tocar."
+        },
+        "jspFormatter.blockIndent": {
+          "type": "number",
+          "default": 2,
+          "minimum": 0,
+          "description": "Espacios extra para el contenido entre <% ... %> respecto a la sangría HTML base."
         }
       }
     },
@@ -64,7 +90,10 @@
     "prettier": "^3.6.2",
     "prettier-plugin-java": "^2.7.5"
   },
-  "bundledDependencies": ["prettier", "prettier-plugin-java"],
+  "bundledDependencies": [
+    "prettier",
+    "prettier-plugin-java"
+  ],
   "devDependencies": {
     "@types/node": "^20.11.30",
     "typescript": "^5.5.4",

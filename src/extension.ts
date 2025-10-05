@@ -15,18 +15,21 @@ export function activate(context: vscode.ExtensionContext) {
           | "auto"
           | "indent-only"
           | "off";
+        const blockIndent = settings.get<number>("jspFormatter.blockIndent", 2); // ← nuevo
 
         const formatted = await formatJspDocument(text, {
           tabWidth,
           useTabs,
-          javaFormat
+          javaFormat,
+          blockIndent
         });
+
+        if (formatted === text) return []; // no-op
 
         const fullRange = new vscode.Range(
           document.positionAt(0),
           document.positionAt(text.length)
         );
-
         return [vscode.TextEdit.replace(fullRange, formatted)];
       }
     }

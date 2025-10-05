@@ -1,8 +1,19 @@
-.vscode/**
-out/test/**
+# Excluir fuentes y mapas
 src/**
 **/*.map
-**/*.ts
-node_modules/typescript/**
-node_modules/@types/**
+
+# Excluir node_modules salvo bundled deps (vsce ya hace esto, pero por si acaso)
+node_modules/**
+
+# Incluir explícitamente las deps empaquetadas (si ves que las excluye por error, quita estas dos líneas)
+!node_modules/prettier/**
+!node_modules/prettier-plugin-java/**
+
+# Excluir tests y configs locales
+.vscode/**
 .vscode-test/**
+test/**
+out/test/**
+
+# Misc
+*.log
