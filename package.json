@@ -1,0 +1,83 @@
+{
+  "name": "jsp-formatter",
+  "displayName": "JSP Formatter",
+  "description": "Formateador y resaltado para JSP (HTML + bloques JSP) con Prettier.",
+  "version": "0.1.0",
+  "publisher": "josalello",
+  "engines": {
+    "vscode": "^1.92.0"
+  },
+  "categories": ["Formatters"],
+  "keywords": ["jsp", "formatter", "prettier", "java", "html"],
+  "activationEvents": ["onLanguage:jsp"],
+  "main": "./out/extension.js",
+  "icon": "images/icon.png",
+  "contributes": {
+    "languages": [
+      {
+        "id": "jsp",
+        "aliases": ["JSP", "jsp"],
+        "extensions": [".jsp", ".jspx"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "JSP Formatter",
+      "properties": {
+        "jspFormatter.tabWidth": {
+          "type": "number",
+          "default": 2,
+          "description": "Tamaño de tabulación para HTML."
+        },
+        "jspFormatter.useTabs": {
+          "type": "boolean",
+          "default": false,
+          "description": "Usar tabs en lugar de espacios."
+        },
+        "jspFormatter.javaFormat": {
+          "type": "string",
+          "enum": ["auto", "indent-only", "off"],
+          "default": "auto",
+          "description": "Cómo formatear el Java dentro de <% %>: auto = intenta prettier-plugin-java; indent-only = solo indenta; off = no tocar."
+        }
+      }
+    },
+    "grammars": [
+      {
+        "language": "jsp",
+        "scopeName": "text.html.jsp",
+        "path": "./syntaxes/jsp.tmLanguage.json",
+        "embeddedLanguages": {
+          "source.java": "java"
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -w -p .",
+    "package": "vsce package",
+    "pretest": "npm run compile"
+  },
+  "dependencies": {
+    "prettier": "^3.6.2",
+    "prettier-plugin-java": "^2.7.5"
+  },
+  "bundledDependencies": ["prettier", "prettier-plugin-java"],
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "typescript": "^5.5.4",
+    "vsce": "^2.15.0",
+    "vscode": "^1.1.37"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/josalello/jsp-formatter"
+  },
+  "bugs": {
+    "url": "https://github.com/josalello/jsp-formatter/issues"
+  },
+  "homepage": "https://github.com/josalello/jsp-formatter#readme"
+}

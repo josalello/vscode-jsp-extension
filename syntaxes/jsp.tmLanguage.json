@@ -1,0 +1,68 @@
+{
+  "scopeName": "text.html.jsp",
+  "patterns": [
+    { "include": "text.html.basic" },
+
+    {
+      "name": "meta.directive.jsp",
+      "begin": "<%\\s*@",
+      "beginCaptures": { "0": { "name": "punctuation.section.embedded.begin.jsp" } },
+      "end": "%>",
+      "endCaptures": { "0": { "name": "punctuation.section.embedded.end.jsp" } },
+      "patterns": [
+        { "name": "entity.name.directive.jsp", "match": "\\b(page|include|taglib)\\b" },
+        { "name": "entity.other.attribute-name.jsp", "match": "\\b\\w+(?=\\s*=)" },
+        {
+          "name": "string.quoted.double.jsp",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [{ "include": "#escaped" }]
+        }
+      ]
+    },
+
+    {
+      "name": "meta.embedded.expression.jsp",
+      "begin": "<%=",
+      "beginCaptures": { "0": { "name": "punctuation.section.embedded.begin.jsp" } },
+      "end": "%>",
+      "endCaptures": { "0": { "name": "punctuation.section.embedded.end.jsp" } },
+      "contentName": "source.java",
+      "patterns": [{ "include": "source.java" }]
+    },
+
+    {
+      "name": "meta.embedded.declaration.jsp",
+      "begin": "<%\\s*!",
+      "beginCaptures": { "0": { "name": "punctuation.section.embedded.begin.jsp" } },
+      "end": "%>",
+      "endCaptures": { "0": { "name": "punctuation.section.embedded.end.jsp" } },
+      "contentName": "source.java",
+      "patterns": [{ "include": "source.java" }]
+    },
+
+    {
+      "name": "meta.embedded.scriptlet.jsp",
+      "begin": "<%(?!@|=|!)",
+      "beginCaptures": { "0": { "name": "punctuation.section.embedded.begin.jsp" } },
+      "end": "%>",
+      "endCaptures": { "0": { "name": "punctuation.section.embedded.end.jsp" } },
+      "contentName": "source.java",
+      "patterns": [{ "include": "source.java" }]
+    },
+
+    {
+      "name": "comment.block.jsp",
+      "begin": "<%--",
+      "end": "--%>"
+    }
+  ],
+  "repository": {
+    "escaped": {
+      "patterns": [
+        { "name": "constant.character.escape.jsp", "match": "\\\\." }
+      ]
+    }
+  },
+  "uuid": "f8a9cbee-6a3b-4ef7-9e93-0fd3f5b3f9fd"
+}
